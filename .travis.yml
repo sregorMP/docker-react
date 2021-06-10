@@ -4,3 +4,6 @@ services:
 
 before_install:
   - docker build -t sregor/docker-react -f Dockerfile.dev . 
+
+script:
+  - docker run sregor/docker-react npm run test -- -- coverage
