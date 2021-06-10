@@ -1,22 +1,21 @@
-version: '3'
-
-services:
-  web:
-    image: "sregor/simpleweb"
-    build:
-      context: .
-      dockerfile: Dockerfile.dev
+version: "3.9"
+services: 
+  app:
+    image: "sregor/reactapp"
+    build: . 
+    restart: always
     ports: 
       - "3000:3000"
-    volumes:
+    volumes: 
       - /app/node_modules
       - .:/app
-##  tests:
- ##       build: 
- ##           context: .
-  ##          dockerfile: Dockerfile.dev
-   ##     volumes:
-   ##         - /app/node_modules
-    ####        - .:/app
-     ##   command: ["npm", "run", "test"]
-        
+  tests:
+    image: "sregor/reactapp"
+    build: . 
+    restart: always
+    volumes: 
+      - /app/node_modules
+      - .:/app
+    command: ["npm","run","test"]
+  
+    
